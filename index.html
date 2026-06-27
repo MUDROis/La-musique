@@ -1,64 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Musique: J'aime / Je n'aime pas</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Musique – learn French</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="app">
+    <header>
+      <h1>🎵 La Musique</h1>
+      <p class="subtitle">Learn French words, express preferences, and talk about music</p>
+      <nav class="tabs">
+        <button class="tab active" data-tab="warmup">🎧 Warm‑up</button>
+        <button class="tab" data-tab="flashcards">📖 Flashcards</button>
+        <button class="tab" data-tab="quiz">🧠 Quiz</button>
+        <button class="tab" data-tab="dialogue">💬 Dialogue</button>
+      </nav>
+    </header>
 
-    <!-- ЭКРАН 1: Welcome -->
-    <section id="screen-welcome" class="screen active">
-        <h1>🎵 La Musique</h1>
-        <p class="subtitle">Listen, match, learn phrases, and practice!</p>
-        <button id="btn-start" class="btn-primary">Start Game ▶️</button>
-    </section>
-
-    <!-- ЭКРАН 2: Listen & Match (разминка) -->
-    <section id="screen-match" class="screen">
-        <h2>What genre is this? 🎧</h2>
-        <p id="track-progress" style="font-size:1rem; color:#666; margin-bottom:10px;">1 / 4</p>
-        <div class="audio-controls">
-            <button id="btn-play-pause" class="btn-secondary">▶️ Play</button>
-            <button id="btn-stop" class="btn-secondary" style="margin-left:5px;">⏹️ Stop</button>
+    <main>
+      <!-- WARM-UP -->
+      <section id="warmup" class="tab-content active">
+        <div class="warmup-area">
+          <h2>Guess the genre</h2>
+          <p class="warmup-desc">Listen to each sample and choose the correct music genre.</p>
+          <div class="genre-grid">
+            <div class="genre-item" data-genre="rock">
+              <div class="audio-controls">
+                <button class="play-btn" data-audio="rock">▶ Play</button>
+                <button class="stop-btn" data-audio="rock">⏹ Stop</button>
+              </div>
+              <div class="genre-options" style="display:none;">
+                <button class="genre-opt" data-genre="rock">Rock</button>
+                <button class="genre-opt" data-genre="jazz">Jazz</button>
+                <button class="genre-opt" data-genre="classical">Classical</button>
+                <button class="genre-opt" data-genre="electronic">Electronic</button>
+              </div>
+              <span class="genre-feedback"></span>
+            </div>
+            <div class="genre-item" data-genre="jazz">
+              <div class="audio-controls">
+                <button class="play-btn" data-audio="jazz">▶ Play</button>
+                <button class="stop-btn" data-audio="jazz">⏹ Stop</button>
+              </div>
+              <div class="genre-options" style="display:none;">
+                <button class="genre-opt" data-genre="rock">Rock</button>
+                <button class="genre-opt" data-genre="jazz">Jazz</button>
+                <button class="genre-opt" data-genre="classical">Classical</button>
+                <button class="genre-opt" data-genre="electronic">Electronic</button>
+              </div>
+              <span class="genre-feedback"></span>
+            </div>
+            <div class="genre-item" data-genre="classical">
+              <div class="audio-controls">
+                <button class="play-btn" data-audio="classical">▶ Play</button>
+                <button class="stop-btn" data-audio="classical">⏹ Stop</button>
+              </div>
+              <div class="genre-options" style="display:none;">
+                <button class="genre-opt" data-genre="rock">Rock</button>
+                <button class="genre-opt" data-genre="jazz">Jazz</button>
+                <button class="genre-opt" data-genre="classical">Classical</button>
+                <button class="genre-opt" data-genre="electronic">Electronic</button>
+              </div>
+              <span class="genre-feedback"></span>
+            </div>
+            <div class="genre-item" data-genre="electronic">
+              <div class="audio-controls">
+                <button class="play-btn" data-audio="electronic">▶ Play</button>
+                <button class="stop-btn" data-audio="electronic">⏹ Stop</button>
+              </div>
+              <div class="genre-options" style="display:none;">
+                <button class="genre-opt" data-genre="rock">Rock</button>
+                <button class="genre-opt" data-genre="jazz">Jazz</button>
+                <button class="genre-opt" data-genre="classical">Classical</button>
+                <button class="genre-opt" data-genre="electronic">Electronic</button>
+              </div>
+              <span class="genre-feedback"></span>
+            </div>
+          </div>
+          <p class="warmup-score">Warm‑up score: <span id="warmupScore">0</span> / 4</p>
+          <audio id="audioPlayer" style="display:none;"></audio>
         </div>
-        <div class="grid-options" id="genre-grid">
-            <button class="btn-genre" data-genre="rock">🎸 Rock</button>
-            <button class="btn-genre" data-genre="classical">🎻 Classical</button>
-            <button class="btn-genre" data-genre="jazz">🎷 Jazz</button>
-            <button class="btn-genre" data-genre="electronic">🎛️ Electronic</button>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section id="flashcards" class="tab-content">
+        <div class="card-area">
+          <div class="flip-card" id="flipCard">
+            <div class="flip-inner">
+              <div class="flip-front">
+                <p class="french-word" id="frontWord">la chanson</p>
+                <button class="speak-btn" id="speakFront">🔊</button>
+              </div>
+              <div class="flip-back">
+                <p class="english-translation" id="backWord">song</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button id="prevCard" class="ctrl-btn">◀</button>
+            <span id="cardCounter">1 / 15</span>
+            <button id="nextCard" class="ctrl-btn">▶</button>
+            <button id="flipBtn" class="ctrl-btn primary">🔁 Flip</button>
+          </div>
+          <p class="hint">Click "Flip" to see the translation, use arrows to navigate, and 🔊 to hear the word.</p>
         </div>
-    </section>
+      </section>
 
-    <!-- ЭКРАН 3: React (J'aime / Je n'aime pas) + запоминание -->
-    <section id="screen-react" class="screen">
-        <h2>Do you like it? 🤔</h2>
-        <div id="current-genre-display" class="genre-display"></div>
-        <div class="reaction-buttons">
-            <button id="btn-like" class="btn-reaction btn-like">❤️ J'aime</button>
-            <button id="btn-dislike" class="btn-reaction btn-dislike">💔 Je n'aime pas</button>
+      <!-- QUIZ -->
+      <section id="quiz" class="tab-content">
+        <div class="quiz-area">
+          <p class="quiz-question" id="quizQuestion">What is the English for <strong>la chanson</strong>?</p>
+          <div class="quiz-options" id="quizOptions">
+            <button class="option" data-index="0">song</button>
+            <button class="option" data-index="1">singer</button>
+            <button class="option" data-index="2">instrument</button>
+            <button class="option" data-index="3">music</button>
+          </div>
+          <div class="quiz-feedback" id="quizFeedback"></div>
+          <button id="nextQuizBtn" class="ctrl-btn primary">Next word →</button>
+          <p class="quiz-score">Score: <span id="quizScore">0</span> / <span id="quizTotal">15</span></p>
         </div>
-        <div id="phrase-memorize" style="margin-top:15px; padding:15px; background:#f0f8ff; border-radius:12px; font-size:1.1rem;"></div>
-    </section>
+      </section>
 
-    <!-- ЭКРАН 4: Practice -->
-    <section id="screen-practice" class="screen">
-        <h2>Practice Time! ✍️</h2>
-        <p id="practice-progress" style="font-size:1rem; color:#666; margin-bottom:10px;">Question 1 / 4</p>
-        <p id="practice-question" style="font-size:1.2rem; margin-bottom:20px;"></p>
-        <div id="practice-options" class="grid-options"></div>
-        <p id="practice-feedback" style="margin-top:20px; font-weight:bold; min-height:30px;"></p>
-    </section>
+      <!-- DIALOGUE -->
+      <section id="dialogue" class="tab-content">
+        <div class="dialogue-area">
+          <div class="dialogue-nav">
+            <button id="prevDialogue" class="ctrl-btn">◀</button>
+            <span id="dialogueCounter">1 / 5</span>
+            <button id="nextDialogue" class="ctrl-btn">▶</button>
+          </div>
+          <div class="dialogue-text" id="dialogueText">
+            <!-- filled by JS -->
+          </div>
+          <div class="dialogue-keywords">
+            <p><strong>Select the keywords (genres and preference expressions) that appear in this dialogue:</strong></p>
+            <div id="keywordOptions" class="keyword-options">
+              <!-- filled by JS -->
+            </div>
+            <button id="checkKeywordsBtn" class="ctrl-btn primary">Check</button>
+            <span id="keywordFeedback" class="keyword-feedback"></span>
+            <p class="dialogue-score">Dialogue score: <span id="dialogueScore">0</span> / <span id="dialogueTotal">5</span></p>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <!-- ЭКРАН 5: Result -->
-    <section id="screen-result" class="screen">
-        <h2>🎉 Ton Playlist! 🎉</h2>
-        <div id="playlist-container" class="playlist"></div>
-        <p id="practice-result" style="font-size:1.1rem; color:#333; margin:15px 0;"></p>
-        <button id="btn-restart" class="btn-primary">Play Again 🔄</button>
-    </section>
+    <footer>
+      <p>French A1 · English B1 · Age 12–14</p>
+    </footer>
+  </div>
 
-    <script src="js/game.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
