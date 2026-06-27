@@ -1,0 +1,58 @@
+:root {
+    --bg-color: #f4f7f6;
+    --primary: #4a90e2;
+    --success: #7ed321;
+    --danger: #d0021b;
+    --text-dark: #333;
+    --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+body {
+    background-image: url('assets/img/bg_music.png'); background-size: cover;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.screen { display: none; text-align: center; max-width: 600px; width: 100%; animation: fadeIn 0.4s; }
+.screen.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+h1 { font-size: 2.5rem; margin-bottom: 10px; }
+h2 { font-size: 1.8rem; margin-bottom: 20px; }
+.subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; }
+
+/* Buttons */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: transform 0.1s, box-shadow 0.2s;
+    padding: 15px 30px;
+    min-height: 60px; /* Touch friendly */
+}
+button:active { transform: scale(0.95); }
+
+.btn-primary { background: var(--primary); color: white; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.btn-secondary { background: white; border: 2px solid var(--primary); color: var(--primary); margin-bottom: 20px; }
+
+.grid-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.btn-genre { background: white; border: 2px solid #ddd; font-size: 1.1rem; }
+.btn-genre:hover { border-color: var(--primary); background: #f0f8ff; }
+
+.genre-display { font-size: 3rem; margin: 20px 0; }
+.reaction-buttons { display: flex; flex-direction: column; gap: 15px; }
+.btn-like { background: var(--success); color: white; }
+.btn-dislike { background: var(--danger); color: white; }
+
+.playlist { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px; }
+.playlist-item { background: white; padding: 15px; border-radius: var(--radius); box-shadow: 0 2px 8px rgba(0,0,0,0.05); font-size: 1.2rem; }
