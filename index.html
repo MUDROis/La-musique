@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Musique: J'aime / Je n'aime pas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <!-- ЭКРАН 1: Welcome -->
     <section id="screen-welcome" class="screen active">
         <h1>🎵 La Musique</h1>
-        <p class="subtitle">Listen, match, and say what you like!</p>
+        <p class="subtitle">Listen, match, learn phrases, and practice!</p>
         <button id="btn-start" class="btn-primary">Start Game ▶️</button>
     </section>
 
-    <!-- ЭКРАН 2: Listen & Match -->
+    <!-- ЭКРАН 2: Listen & Match (разминка) -->
     <section id="screen-match" class="screen">
         <h2>What genre is this? 🎧</h2>
+        <p id="track-progress" style="font-size:1rem; color:#666; margin-bottom:10px;">1 / 4</p>
         <button id="btn-play-audio" class="btn-secondary">🔊 Play Sound</button>
         <div class="grid-options" id="genre-grid">
             <button class="btn-genre" data-genre="rock">🎸 Rock</button>
@@ -27,27 +28,34 @@
         </div>
     </section>
 
-    <!-- ЭКРАН 3: React (J'aime / Je n'aime pas) -->
+    <!-- ЭКРАН 3: React (J'aime / Je n'aime pas) + запоминание -->
     <section id="screen-react" class="screen">
         <h2>Do you like it? 🤔</h2>
-        <div id="current-genre-display" class="genre-display">
-            <!-- Сюда JS подставит иконку и название -->
-        </div>
+        <div id="current-genre-display" class="genre-display"></div>
         <div class="reaction-buttons">
             <button id="btn-like" class="btn-reaction btn-like">❤️ J'aime</button>
             <button id="btn-dislike" class="btn-reaction btn-dislike">💔 Je n'aime pas</button>
         </div>
+        <div id="phrase-memorize" style="margin-top:15px; padding:15px; background:#f0f8ff; border-radius:12px; font-size:1.1rem;"></div>
     </section>
 
-    <!-- ЭКРАН 4: Result / Playlist -->
+    <!-- ЭКРАН 4: Practice -->
+    <section id="screen-practice" class="screen">
+        <h2>Practice Time! ✍️</h2>
+        <p id="practice-progress" style="font-size:1rem; color:#666; margin-bottom:10px;">Question 1 / 4</p>
+        <p id="practice-question" style="font-size:1.2rem; margin-bottom:20px;"></p>
+        <div id="practice-options" class="grid-options"></div>
+        <p id="practice-feedback" style="margin-top:20px; font-weight:bold; min-height:30px;"></p>
+    </section>
+
+    <!-- ЭКРАН 5: Result -->
     <section id="screen-result" class="screen">
         <h2>🎉 Ton Playlist! 🎉</h2>
-        <div id="playlist-container" class="playlist">
-            <!-- JS добавит сюда карточки любимых жанров -->
-        </div>
+        <div id="playlist-container" class="playlist"></div>
+        <p id="practice-result" style="font-size:1.1rem; color:#333; margin:15px 0;"></p>
         <button id="btn-restart" class="btn-primary">Play Again 🔄</button>
     </section>
 
-    <script src="script.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>
