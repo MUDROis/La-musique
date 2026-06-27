@@ -41,16 +41,45 @@ let currentTrackIndex = 0;
 let playlist = [];
 let practiceIndex = 0;
 let practiceCorrect = 0;
+let currentAudio = null;
 
 // --- AUDIO ---
 function playSound(src) {
+    // Stop any currently playing audio
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    
     const audio = new Audio(src);
+    currentAudio = audio;
+    
     audio.play().catch(e => console.log("Audio play failed:", e));
+    
+    audio.addEventListener('ended', () => {
+        updatePlayPauseButton('play');
+    });
+    
+    audio.addEventListener('pause', () => {
+        updatePlayPauseButton('play');
+    });
+    
+    audio.addEventListener('play', () => {
+        updatePlayPauseButton('pause');
+    });
+    
     return audio;
 }
 
 function playSFX(type) {
     playSound(`assets/audio/sfx_${type}.mp3`);
+}
+
+function updatePlayPauseButton(state) {
+    const btn = document.getElementById('btn-play-pause');
+    if (btn) {
+        btn.textContent = state === 'play' ? '▶️ Play' : '⏸️ Pause';
+    }
 }
 
 // --- SCREENS ---
@@ -66,6 +95,14 @@ function startGame() {
     playlist = [];
     practiceIndex = 0;
     practiceCorrect = 0;
+    
+    // Stop any playing audio
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+    }
+    
     showScreen('screen-match');
     loadMatchRound();
 }
@@ -215,6 +252,37 @@ function showResults() {
 document.getElementById('btn-start').addEventListener('click', startGame);
 document.getElementById('btn-restart').addEventListener('click', startGame);
 
+// Play/Pause button
+document.getElementById('btn-play-pause').addEventListener('click', () => {
+    const currentGenre = genres[currentTrackIndex];
+    const trackUrl = `assets/audio/track_${currentGenre}.mp3`;
+    
+    if (!currentAudio) {
+        // Start playing
+        playSound(trackUrl);
+        updatePlayPauseButton('pause');
+    } else if (currentAudio.paused) {
+        // Resume playing
+        currentAudio.play();
+        updatePlayPauseButton('pause');
+    } else {
+        // Pause playing
+        currentAudio.pause();
+        updatePlayPauseButton('play');
+    }
+});
+
+// Stop button
+document.getElementById('btn-stop').addEventListener('click', () => {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentAudio = null;
+    }
+    updatePlayPauseButton('play');
+});
+
+// Original play button (kept for compatibility)
 document.getElementById('btn-play-audio').addEventListener('click', () => {
     const track = genres[currentTrackIndex];
     playSound(`assets/audio/track_${track}.mp3`);

@@ -19,7 +19,10 @@
     <section id="screen-match" class="screen">
         <h2>What genre is this? 🎧</h2>
         <p id="track-progress" style="font-size:1rem; color:#666; margin-bottom:10px;">1 / 4</p>
-        <button id="btn-play-audio" class="btn-secondary">🔊 Play Sound</button>
+        <div class="audio-controls">
+            <button id="btn-play-pause" class="btn-secondary">▶️ Play</button>
+            <button id="btn-stop" class="btn-secondary" style="margin-left:5px;">⏹️ Stop</button>
+        </div>
         <div class="grid-options" id="genre-grid">
             <button class="btn-genre" data-genre="rock">🎸 Rock</button>
             <button class="btn-genre" data-genre="classical">🎻 Classical</button>

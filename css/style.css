@@ -79,12 +79,7 @@ button:active {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.btn-secondary {
-    background: white;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    margin-bottom: 20px;
-}
+".btn-secondary {\n    background: white;\n    border: 2px solid var(--primary);\n    color: var(--primary);\n    margin-bottom: 20px;\n}\n\n.audio-controls {\n    display: flex;\n    justify-content: center;\n    gap: 10px;\n    margin: 10px 0;\n}"}
 
 .grid-options {
     display: grid;
